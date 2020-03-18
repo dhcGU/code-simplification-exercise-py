@@ -16,16 +16,20 @@ now = datetime.now()
 
 subtotal = sum([p["price"] for p in selected_products])
 
+def usd(value):
+    return f"${value:,.2f}"
+
+
 # PRINT RECEIPT
 
 print("---------")
 print("CHECKOUT AT: " + str(now.strftime("%Y-%M-%d %H:%m:%S")))
 print("---------")
 for p in selected_products:
-    print("SELECTED PRODUCT: " + p["name"] + "   " + '${:.0f}'.format(p["price"]))
+    print("SELECTED PRODUCT: " + p["name"] + "   " + usd(p["price"]))
 print("---------")
-print(f"SUBTOTAL: {subtotal:,.2f}")
-print(f"TAX: {(subtotal * 0.0875):.2f}")
+print(f"SUBTOTAL: {usd(subtotal)}")
+print(f"TAX: {usd(subtotal)}")
 print(f"TOTAL: {((subtotal * 0.0875) + subtotal):.2f}")
 print("---------")
 print("THANK YOU! PLEASE COME AGAIN SOON!")
